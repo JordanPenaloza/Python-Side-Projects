@@ -92,7 +92,7 @@ class JordanShop:
         self.driver.close
 
 if __name__ == '__main__':
-    shopBot = JordanShop(username="jordan332033@gmail.com", password="ZeldaMaster3")
+    shopBot = JordanShop(username="username", password="password")
     shopBot.findProduct()
     shopBot.closeBrowser()
 
