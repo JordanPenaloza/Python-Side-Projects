@@ -9,7 +9,7 @@ from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.action_chains import ActionChains ## MAYBE
 from selenium.common.exceptions import ElementNotInteractableException, NoSuchElementException, StaleElementReferenceException
-from random import randict, randrange
+from random import randint, randrange
 import time 
 import random
 
@@ -26,7 +26,7 @@ class JordanShop:
         self.driver = webdriver.Firefox()
 
     ## Sign into site with the product
-    def signIn():
+    def signIn(self):
         """ Sign into site with the product """
         driver = self.driver ## Navigate to URL
 
@@ -35,46 +35,46 @@ class JordanShop:
         username_elem.clear()
         username_elem.send_keys(self.username)
 
-        time.sleep(randict(int(WAIT_TIME/2), WAIT_TIME))
+        time.sleep(randint(int(WAIT_TIME/2), WAIT_TIME))
         username_elem.send_keys(Keys.RETURN)
-        time.sleep(randict(int(WAIT_TIME/2), WAIT_TIME))
+        time.sleep(randint(int(WAIT_TIME/2), WAIT_TIME))
         
         ## Enter Password
         password_elem = driver.find_element_by_xpath("//input[@name='password']")
         password_elem.clear()
         password_elem.send_keys(self.password)
 
-        time.sleep(randict(int(WAIT_TIME/2), WAIT_TIME))
+        time.sleep(randint(int(WAIT_TIME/2), WAIT_TIME))
         password_elem.send_keys(Keys.RETURN)
-        time.sleep(randict(int(WAIT_TIME/2), WAIT_TIME))
+        time.sleep(randint(int(WAIT_TIME/2), WAIT_TIME))
 
     ## Find product under X amount
     def findProduct(self):
         """ Finds the product with global link """
         driver = self.driver
         driver.get(AMAZON_TEST_URL)
-        time.sleep(randict(int(WAIT_TIME/2), WAIT_TIME))
+        time.sleep(randint(int(WAIT_TIME/2), WAIT_TIME))
 
         ## If the product is not available, wait until it is available
         isAvailable = self.isProductAvailable()
         if isAvailable == 'Currently unavailable.':
-            time.sleep(randict(int(WAIT_TIME/2), WAIT_TIME))
+            time.sleep(randint(int(WAIT_TIME/2), WAIT_TIME))
             self.findProduct()
         elif isAvailable <= PRICE_LIMIT:
             ## Buy Now
             buy_now = driver.find_element_by_name('submit.buy-now')
             buy_now.click()
-            time.sleep(randict(int(WAIT_TIME/2), WAIT_TIME))
+            time.sleep(randint(int(WAIT_TIME/2), WAIT_TIME))
             self.signIn()
 
             ## Place Order
             place_order = driver.find_element_by_name('placeYourOrder1').text
-            time.sleep(randict(int(WAIT_TIME/2), WAIT_TIME))
+            time.sleep(randint(int(WAIT_TIME/2), WAIT_TIME))
             ## place_order.click()
             ## time.sleep(randict(int(WAIT_TIME/2), WAIT_TIME))
 
         else:
-            time.sleep(randict(int(WAIT_TIME/2), WAIT_TIME))
+            time.sleep(randint(int(WAIT_TIME/2), WAIT_TIME))
             self.findProduct()
         
     def isProductAvailable(self):
@@ -92,7 +92,7 @@ class JordanShop:
         self.driver.close
 
 if __name__ == '__main__':
-    shopBot = JordanShop(username="jordan332033@gmail.com", password="ZeldaMaster3")
+    shopBot = JordanShop(username="USERNAME", password="PASSWORD")
     shopBot.findProduct()
     shopBot.closeBrowser()
 
