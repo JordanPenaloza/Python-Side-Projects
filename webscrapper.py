@@ -39,7 +39,7 @@ class JordanShop:
         username_elem.send_keys(Keys.RETURN)
         time.sleep(randint(int(WAIT_TIME/2), WAIT_TIME))
         
-        ## Enter Password
+        ## Enter Password 
         password_elem = driver.find_element_by_xpath("//input[@name='password']")
         password_elem.clear()
         password_elem.send_keys(self.password)
@@ -92,8 +92,8 @@ class JordanShop:
         self.driver.close
 
 if __name__ == '__main__':
+
     shopBot = JordanShop(username="USERNAME", password="PASSWORD")
     shopBot.findProduct()
     shopBot.closeBrowser()
-
 
